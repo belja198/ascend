@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dipy2xqubrpxm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m74fd"]
+size = Vector2(16, 8)
+
+[node name="HalfWall" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_m74fd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+color = Color(1.92523e-07, 0.111868, 0.256082, 1)

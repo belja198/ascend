@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=4 uid="uid://bxxgda4ayqej1"]
+
+[ext_resource type="Texture2D" uid="uid://dal6p1dww0od7" path="res://sprites/tileset.png" id="1_xy52u"]
+[ext_resource type="PackedScene" uid="uid://ce0mxy14nf7c4" path="res://scenes/switchable_block_red.tscn" id="2_i6rr4"]
+[ext_resource type="PackedScene" uid="uid://dux6m0rbjrq6h" path="res://scenes/player.tscn" id="3_7xuqg"]
+[ext_resource type="PackedScene" uid="uid://ddee83t2xdcgn" path="res://scenes/door.tscn" id="4_v0ghl"]
+[ext_resource type="FontFile" uid="uid://cu72bec757ksd" path="res://sprites/PublicPixel10.ttf" id="5_qy6pr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ljscb"]
+texture = ExtResource("1_xy52u")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+0:4/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c0qj7"]
+scenes/1/scene = ExtResource("2_i6rr4")
+
+[sub_resource type="TileSet" id="TileSet_11ag2"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_ljscb")
+sources/2 = SubResource("TileSetScenesCollectionSource_c0qj7")
+
+[node name="World" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+z_index = -1
+tile_map_data = PackedByteArray("AAABAAsAAQAAAAAAAAABAAoAAQAAAAAAAAAAAAYAAQAAAAAAAAAAAAUAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAsAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAkAAQAAAAAAAAAAAAgAAQAAAAAAAAAAAAcAAQAAAAAAAAACAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAPAAAAAQAAAAAAAAAQAAAAAQAAAAAAAAARAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAJAAoAAQAAAAAAAAACAAoAAQAAAAAAAAADAAsAAQAAAAAAAAAEAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAGAAsAAQAAAAAAAAAHAAsAAQAAAAAAAAAIAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAKAAsAAQAAAAAAAAALAAsAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAsAAQAAAAAAAAAOAAsAAQAAAAAAAAAPAAsAAQAAAAAAAAAQAAsAAQAAAAAAAAARAAsAAQAAAAAAAAASAAsAAQAAAAAAAAATAAsAAQAAAAAAAAATAAoAAQAAAAAAAAASAAoAAQAAAAAAAAARAAoAAQAAAAAAAAAQAAoAAQAAAAAAAAAPAAoAAQAAAAAAAAAOAAoAAQAAAAAAAAANAAoAAQAAAAAAAAAMAAoAAQAAAAAAAAALAAoAAQAAAAAAAAAKAAoAAQAAAAAAAAAIAAoAAQAAAAAAAAAHAAoAAQAAAAAAAAAGAAoAAQAAAAAAAAAFAAoAAQAAAAAAAAAEAAoAAQAAAAAAAAADAAoAAQAAAAAAAAACAAsAAQAAAAAAAAATAAkAAQAAAAAAAAATAAgAAQAAAAAAAAATAAcAAQAAAAAAAAATAAYAAQAAAAAAAAATAAUAAQAAAAAAAAATAAQAAQAAAAAAAAATAAMAAQAAAAAAAAATAAIAAQAAAAAAAAATAAEAAQAAAAAAAAASAAgAAQAAAAAAAAASAAkAAQAAAAAAAAARAAkAAQAAAAAAAAARAAgAAQAAAAAAAAAIAAgAAQAAAAAAAAAIAAkAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAgAAQAAAAAAAAAKAAgAAQAAAAAAAAAKAAkAAQAAAAAAAAALAAgAAQAAAAAAAAALAAkAAQAAAAAAAAAHAAgAAQAAAAAAAAAHAAkAAQAAAAAAAAARAAcAAQAAAAAAAAASAAcAAQAAAAAAAAASAAYAAQAAAAAAAAARAAYAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_11ag2")
+
+[node name="Player" parent="." instance=ExtResource("3_7xuqg")]
+position = Vector2(48, 160)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+
+[node name="Door" parent="." instance=ExtResource("4_v0ghl")]
+position = Vector2(288, 88)
+next_level_name = "res://scenes/levels/level_1.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 320.0
+offset_bottom = 192.0
+color = Color(0.501961, 0.729412, 0.494118, 1)
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 144.0
+offset_right = 176.0
+offset_bottom = 192.0
+theme_override_colors/default_color = Color(0.501961, 0.729412, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("5_qy6pr")
+theme_override_font_sizes/normal_font_size = 16
+text = " ↑
+← →"

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6e3hxnf201f6"]
+
+[ext_resource type="Script" path="res://scenes/downward_teleporter.gd" id="1_8ev18"]
+[ext_resource type="Texture2D" uid="uid://divvktwdafm5j" path="res://sprites/downward_teleporter.png" id="1_q3hfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hhf0"]
+size = Vector2(16, 192)
+
+[sub_resource type="Gradient" id="Gradient_7r1yx"]
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7, 1)
+colors = PackedColorArray(0.513726, 0.580392, 1, 0.372549, 0.196078, 0.784314, 1, 0.580392, 0, 0.701961, 0.972549, 0.729412, 0.196078, 0.784314, 1, 0.580392, 0.513726, 0.580392, 1, 0.372549)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ul4h3"]
+gradient = SubResource("Gradient_7r1yx")
+
+[node name="DownwardTeleporter" type="Node2D"]
+script = ExtResource("1_8ev18")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_4hhf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+z_index = -2
+position = Vector2(0, -96)
+scale = Vector2(0.25, 3)
+texture = SubResource("GradientTexture2D_ul4h3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_q3hfy")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
