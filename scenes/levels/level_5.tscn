@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6e3hxnf201f6" path="res://scenes/downward_teleporter.tscn" id="6_oyqlw"]
 [ext_resource type="PackedScene" uid="uid://dipy2xqubrpxm" path="res://scenes/half_wall.tscn" id="7_w0qli"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sv6f2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6c8u"]
 texture = ExtResource("1_3fsjs")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -22,14 +22,14 @@ texture = ExtResource("1_3fsjs")
 1:3/0 = 0
 0:4/0 = 0
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_oblru"]
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6myq4"]
 scenes/1/scene = ExtResource("2_bw0cw")
 scenes/2/scene = ExtResource("3_ioxd2")
 
 [sub_resource type="TileSet" id="TileSet_11ag2"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_sv6f2")
-sources/2 = SubResource("TileSetScenesCollectionSource_oblru")
+sources/1 = SubResource("TileSetAtlasSource_n6c8u")
+sources/2 = SubResource("TileSetScenesCollectionSource_6myq4")
 
 [node name="World" type="Node2D"]
 

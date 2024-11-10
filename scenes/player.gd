@@ -52,24 +52,18 @@ func _physics_process(delta: float) -> void:
 	if !_is_on_floor():
 		
 		if velocity.y >= 0 || jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding():
-			#print("SET FLOATING TO TRUE");
 			velocity.y = 0;
 			is_floating = true;
 
 
 		if !is_floating:
 			velocity.y += jump_gravity * delta;
-			# @DEBUG_A 1
-			#print("Gravity pulling him down")
 	else:
 		is_floating = false;
 
 	if (is_floating || _is_on_floor()):
 		position.y = round(position.y) - 0.001;
 		collision_shape_jumping.disabled = true;
-		velocity.y = 0;
-		# @DEBUG_A 2
-		# print("Rounding vel.y:" + str(velocity.y) + " pos.y: " + str(position.y));
 		
 	# Handle jump.
 	if Input.is_action_just_pressed("move_up") && (_is_on_floor() || is_floating) && !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding():
