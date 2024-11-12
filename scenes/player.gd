@@ -56,6 +56,8 @@ func _physics_process(delta: float) -> void:
 		
 		if velocity.y >= 0 || jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding():
 			velocity.y = 0;
+			
+			#collision_shape_jumping.disabled = true;
 			is_floating = true;
 
 
