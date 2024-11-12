@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	if is_player_present && is_active:
 		print("DEATH!!!!!!!!");
 		GlobalScript.restart_level();
+		modulate = Color(0,0,0);
 
 	set_collision_layer_value(1, is_active);
 	active_sprite.visible = is_active;

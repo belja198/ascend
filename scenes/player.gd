@@ -25,6 +25,9 @@ var is_floating: bool = false;
 @onready var jump_gravity: float = - (- 2 * jump_height) / (jump_time_to_peak * jump_time_to_peak);
 @onready var fall_gravity: float = - (- 2 * jump_height) / (jump_time_to_fall * jump_time_to_fall);
 
+signal player_started_floating;
+signal player_startef_walking;
+
 func _ready() -> void:
 	collision_shape_jumping.disabled = true;
 	

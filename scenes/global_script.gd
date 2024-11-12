@@ -1,6 +1,7 @@
 extends Node
 
 var player_ref: Player = null;
+var is_player_floating: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

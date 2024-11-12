@@ -16,14 +16,23 @@ func _process(delta: float) -> void:
 
 	is_active = GlobalScript.player_ref.is_floating;
 
-	if is_player_present && is_active:
-		print("DEATH!!!!!!!!");
-		GlobalScript.restart_level();
+	
+	call_deferred("check_death");
+
+	#if is_player_present && is_active:
+		#print("DEATH!!!!!!!!");
+		#modulate = Color(0,0,0);
+		#GlobalScript.restart_level();
 
 	set_collision_layer_value(1, is_active);
 	active_sprite.visible = is_active;
 	inactive_sprite.visible = !is_active;
 
+func check_death() -> void:
+	if is_player_present && is_active:
+		print("DEATH!!!!!!!!");
+		modulate = Color(0,0,0);
+		#GlobalScript.restart_level();
 
 func _on_area_2d_body_exited(body:Node2D) -> void:
 	if body is Player:
