@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		modulate = Color(0,0,0);
 
 	set_collision_layer_value(1, is_active);
+	set_collision_layer_value(3, is_active);
 	active_sprite.visible = is_active;
 	inactive_sprite.visible = !is_active;
 

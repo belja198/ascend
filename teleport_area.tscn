@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbpwpglqbujo7"]
+
+[ext_resource type="Script" path="res://teleport_area.gd" id="1_pnx8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hhf0"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_hqwie"]
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7, 1)
+colors = PackedColorArray(0.513726, 0.580392, 1, 0.372549, 0.196078, 0.784314, 1, 0.580392, 0, 0.701961, 0.972549, 0.729412, 0.196078, 0.784314, 1, 0.580392, 0.513726, 0.580392, 1, 0.372549)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ul4h3"]
+gradient = SubResource("Gradient_hqwie")
+
+[node name="TeleportArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_pnx8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_4hhf0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, -8)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_ul4h3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

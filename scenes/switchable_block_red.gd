@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 		#GlobalScript.restart_level();
 
 	set_collision_layer_value(1, is_active);
+	set_collision_layer_value(3, is_active);
 	active_sprite.visible = is_active;
 	inactive_sprite.visible = !is_active;
 

@@ -25,3 +25,5 @@ shape = SubResource("RectangleShape2D_2obvi")
 position = Vector2(2.38419e-07, 0)
 scale = Vector2(0.25, 0.25)
 texture = SubResource("GradientTexture2D_amwvy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

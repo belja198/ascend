@@ -10,6 +10,7 @@ var is_floating: bool = false;
 @onready var jump_raycast_1: RayCast2D = $JumpAllowRaycast1;
 @onready var jump_raycast_2: RayCast2D = $JumpAllowRaycast2;
 @onready var collision_shape_jumping: CollisionShape2D = $CollisionShapeJumping;
+@onready var collision_shape_walking: CollisionShape2D = $CollisionShape2D;
 
 @onready var floor_raycast_1: RayCast2D = $FloorRaycast1;
 @onready var floor_raycast_2: RayCast2D = $FloorRaycast2;
@@ -52,9 +53,9 @@ func _physics_process(delta: float) -> void:
 	#	float_sprite.visible = false;
 
 	# Add the gravity.
-	if !_is_on_floor():
+	if !_is_on_floor() || velocity.y != 0:
 		
-		if velocity.y >= 0 || jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding():
+		if velocity.y >= 0:
 			velocity.y = 0;
 			
 			#collision_shape_jumping.disabled = true;
@@ -65,15 +66,18 @@ func _physics_process(delta: float) -> void:
 			velocity.y += jump_gravity * delta;
 	else:
 		is_floating = false;
+		#velocity.y = 0;
 
 	if (is_floating || _is_on_floor()):
 		position.y = round(position.y) - 0.001;
 		collision_shape_jumping.disabled = true;
+		#collision_shape_walking.disabled = false;
 		
 	# Handle jump.
 	if Input.is_action_just_pressed("move_up") && (_is_on_floor() || is_floating) && !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding():
 		velocity.y = jump_velocity;
 		collision_shape_jumping.disabled = false;
+		#collision_shape_walking.disabled = true;
 		is_floating = false;
 
 	float_sprite.visible = is_floating;

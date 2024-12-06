@@ -42,6 +42,7 @@ position = Vector2(160, 90)
 
 [node name="Door" parent="." instance=ExtResource("4_vwvci")]
 position = Vector2(296, 56)
+next_level_name = "res://scenes/levels/level_3.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10

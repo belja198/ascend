@@ -27,7 +27,7 @@ scenes/1/scene = ExtResource("2_1uv1c")
 scenes/2/scene = ExtResource("3_8s42o")
 
 [sub_resource type="TileSet" id="TileSet_11ag2"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
 sources/1 = SubResource("TileSetAtlasSource_sv6f2")
 sources/2 = SubResource("TileSetScenesCollectionSource_oblru")
 
@@ -46,7 +46,7 @@ position = Vector2(160, 90)
 
 [node name="Door" parent="." instance=ExtResource("4_7hrm1")]
 position = Vector2(168, 136)
-next_level_name = "res://scenes/levels/level_2.tscn"
+next_level_name = "res://scenes/levels/level_4.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
