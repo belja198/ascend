@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	inactive_sprite.visible = !is_active;
 
 func check_death() -> void:
-	if is_player_present && is_active:
+	if is_player_present && is_active && !GlobalScript.player_ref.is_on_floor():
 		print("DEATH!!!!!!!!");
 		modulate = Color(0,0,0);
 		#GlobalScript.restart_level();

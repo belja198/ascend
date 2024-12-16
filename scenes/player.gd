@@ -4,6 +4,7 @@ class_name Player
 @export var speed: float = 100.0;
 
 var is_floating: bool = false;
+var old_is_floating: bool = is_floating;
 @onready var float_sprite: Sprite2D = $FloatSprite;
 @onready var sprite: Sprite2D = $Sprite2D;
 
@@ -15,6 +16,10 @@ var is_floating: bool = false;
 @onready var floor_raycast_1: RayCast2D = $FloorRaycast1;
 @onready var floor_raycast_2: RayCast2D = $FloorRaycast2;
 
+@onready var left_low_ray: RayCast2D = $LeftLowRay;
+@onready var left_high_ray: RayCast2D = $LeftHighRay;
+@onready var right_low_ray: RayCast2D = $RightLowRay;
+@onready var right_high_ray: RayCast2D = $RightHighRay;
 
 @onready var position_label: RichTextLabel = $PositionLabel;
 
@@ -29,6 +34,12 @@ var is_floating: bool = false;
 signal player_started_floating;
 signal player_startef_walking;
 
+func _is_touching_left_wall() -> bool:
+	return left_low_ray.is_colliding() || left_high_ray.is_colliding();
+
+func _is_touching_right_wall() -> bool:
+	return right_low_ray.is_colliding() || right_high_ray.is_colliding();
+
 func _ready() -> void:
 	collision_shape_jumping.disabled = true;
 	
@@ -40,6 +51,9 @@ func _ready() -> void:
 	floor_stop_on_slope = true;
 	floor_max_angle = 0.0;
 	#floor_block_on_wall = true;
+
+	#Engine.time_scale = 0.1	;
+
 
 # @BUG_A - walking in the level of the floor having the yellow blocks infront of the player
 # the player collides with newly created blocks and when the user keeps pressing horizontal movement
@@ -53,8 +67,8 @@ func _physics_process(delta: float) -> void:
 	#	float_sprite.visible = false;
 
 	# Add the gravity.
-	if !_is_on_floor() || velocity.y != 0:
-		
+	if !_is_on_floor() || velocity.y != 0 :
+		#|| jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding()
 		if velocity.y >= 0:
 			velocity.y = 0;
 			
@@ -62,7 +76,7 @@ func _physics_process(delta: float) -> void:
 			is_floating = true;
 
 
-		if !is_floating:
+		if !is_floating :
 			velocity.y += jump_gravity * delta;
 	else:
 		is_floating = false;
@@ -74,6 +88,7 @@ func _physics_process(delta: float) -> void:
 		#collision_shape_walking.disabled = false;
 		
 	# Handle jump.
+	#&& !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding()
 	if Input.is_action_just_pressed("move_up") && (_is_on_floor() || is_floating) && !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding():
 		velocity.y = jump_velocity;
 		collision_shape_jumping.disabled = false;
@@ -84,10 +99,15 @@ func _physics_process(delta: float) -> void:
 	
 	var direction_x: float = 0;
 
-	if Input.is_action_pressed("move_right"):
+	#&& !_is_touching_right_wall()
+	if Input.is_action_pressed("move_right") && !_is_touching_right_wall():
 		direction_x += 1;
-	if Input.is_action_pressed("move_left"):
+	#&& !_is_touching_left_wall()
+	if Input.is_action_pressed("move_left") && !_is_touching_left_wall():
 		direction_x -= 1;
+
+	if Input.is_action_pressed("move_right") && Input.is_action_pressed("move_left"):
+		direction_x = 0;
 
 	velocity.x = direction_x * speed;
 
@@ -98,6 +118,11 @@ func _physics_process(delta: float) -> void:
 	if direction_x != 0:
 		sprite.flip_h = (direction_x == -1);
 
+
+	if old_is_floating != is_floating:
+		#print("FLOATING STATE CHANGED")
+		pass;
+	old_is_floating = is_floating;
 
 	#move_and_collide(velocity * delta);
 	move_and_slide();

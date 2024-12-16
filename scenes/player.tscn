@@ -65,3 +65,19 @@ target_position = Vector2(0, 1)
 [node name="FloorRaycast2" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
 target_position = Vector2(0, 1)
+
+[node name="LeftLowRay" type="RayCast2D" parent="."]
+position = Vector2(-5, 0)
+target_position = Vector2(-1, 0)
+
+[node name="LeftHighRay" type="RayCast2D" parent="."]
+position = Vector2(-5, -15)
+target_position = Vector2(-1, 0)
+
+[node name="RightLowRay" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(1, 0)
+
+[node name="RightHighRay" type="RayCast2D" parent="."]
+position = Vector2(5, -15)
+target_position = Vector2(1, 0)
