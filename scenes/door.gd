@@ -27,6 +27,6 @@ func change_level() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		#print("player confirmed")
-		if next_level_name == "":
+		if next_level_name == "" || is_locked:
 			return;
 		call_deferred("change_level");
