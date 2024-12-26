@@ -15,6 +15,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_7r1yx")
 
 [node name="DownwardTeleporter" type="Node2D"]
+z_index = -1
 position = Vector2(0, 8)
 script = ExtResource("1_8ev18")
 
@@ -32,6 +33,7 @@ scale = Vector2(0.25, 0.25)
 texture = SubResource("GradientTexture2D_akhrj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(0, -8)
 texture = ExtResource("1_q3hfy")
 

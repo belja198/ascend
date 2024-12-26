@@ -5,7 +5,7 @@ var is_player_floating: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	call_deferred("restart_level");
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

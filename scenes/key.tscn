@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmiv4ksdw2ye0"]
+
+[ext_resource type="Script" path="res://scenes/key.gd" id="1_dvptv"]
+[ext_resource type="Texture2D" uid="uid://b5ki0co0l2ush" path="res://sprites/key.png" id="1_ss1u3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duokv"]
+size = Vector2(16, 16)
+
+[sub_resource type="Gradient" id="Gradient_1bjf0"]
+colors = PackedColorArray(1, 1, 0.713726, 0.45098, 1, 1, 0.713726, 0.45098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1odj1"]
+gradient = SubResource("Gradient_1bjf0")
+
+[node name="Key" type="Area2D" groups=["keyes"]]
+script = ExtResource("1_dvptv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_duokv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_1odj1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ss1u3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

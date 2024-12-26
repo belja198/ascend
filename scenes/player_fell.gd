@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name PlayerFell
 
 @export var speed: float = 100.0;
 
@@ -45,17 +45,16 @@ func _ready() -> void:
 	
 	float_sprite.visible = false;
 	is_floating = false;
-	GlobalScript.player_ref = self;
+	#GlobalScript.player_ref = self;
 
 	floor_constant_speed = true;
 	floor_stop_on_slope = true;
 	floor_max_angle = 0.0;
+	#floor_block_on_wall = true;
 
 	
 	position.y = round(position.y) - 0.001;
 	collision_shape_jumping.disabled = true;
-
-	#floor_block_on_wall = true;
 
 	#Engine.time_scale = 0.1	;
 
@@ -72,17 +71,11 @@ func _physics_process(delta: float) -> void:
 	#	float_sprite.visible = false;
 
 	# Add the gravity.
-	if !_is_on_floor() || velocity.y != 0 :
-		#|| jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding()
-		if velocity.y >= 0:
-			velocity.y = 0;
-			
-			#collision_shape_jumping.disabled = true;
-			is_floating = true;
-
-
-		if !is_floating :
+	if !_is_on_floor():
+		if (velocity.y <= 0):
 			velocity.y += jump_gravity * delta;
+		else:
+			velocity.y += fall_gravity * delta;
 	else:
 		is_floating = false;
 		#velocity.y = 0;
@@ -91,11 +84,16 @@ func _physics_process(delta: float) -> void:
 		position.y = round(position.y) - 0.001;
 		collision_shape_jumping.disabled = true;
 		#collision_shape_walking.disabled = false;
-
-
+	#position.x = round(position.x);
+		
 	# Handle jump.
 	#&& !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding()
-	if Input.is_action_just_pressed("move_up") && (_is_on_floor() || is_floating) && !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding():
+
+	if Input.is_action_just_pressed("move_up") && (_is_on_floor() ) :
+		print("jump");
+
+	if Input.is_action_just_pressed("move_up") && (_is_on_floor() ) && !jump_raycast_1.is_colliding() && !jump_raycast_2.is_colliding():
+		
 		velocity.y = jump_velocity;
 		collision_shape_jumping.disabled = false;
 		#collision_shape_walking.disabled = true;
@@ -118,7 +116,6 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction_x * speed;
 
 	#update_animations(direction_x);
-	#print(position.y);
 
 
 	if direction_x != 0:
@@ -126,23 +123,12 @@ func _physics_process(delta: float) -> void:
 
 
 	if old_is_floating != is_floating:
-		#print("FLOATING STATE CHANGED")
 		pass;
 	old_is_floating = is_floating;
 
-	#move_and_collide(velocity * delta);
 	move_and_slide();
-	#if is_on_floor():
-	#	if velocity.x != 0:
-	#		var collision: KinematicCollision2D = get_last_slide_collision()
-	#		if collision and (collision.get_normal() == Vector2.LEFT or collision.get_normal() == Vector2.RIGHT):
-	#			velocity.y = 0;
 
-	#if (velocity.y == 0):
-	#position.y = round(position.y) - 0.001;
-	#position.x = round(position.x);
-
-	position_label.text = "vel_y" + str(velocity.y) + "\ny:" + str(position.y); 
+	position_label.text = "vel_y" + str(velocity.y) + "\ny:" + str(position.y) + "\nx:" + str(position.x); 
 
 func _is_on_floor() -> bool:
 	return floor_raycast_1.is_colliding() || floor_raycast_2.is_colliding();

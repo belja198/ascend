@@ -7,14 +7,24 @@ var is_player_present: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	active_sprite.visible = false;
-	inactive_sprite.visible = true;
+	if (GlobalScript.player_ref != null):
+		is_active = GlobalScript.player_ref.is_floating;
+	else:
+		is_active = false;
+
+	set_collision_layer_value(1, is_active);
+	set_collision_layer_value(3, is_active);
+	active_sprite.visible = is_active;
+	inactive_sprite.visible = !is_active;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	is_active = GlobalScript.player_ref.is_floating;
+	if (GlobalScript.player_ref != null):
+		is_active = GlobalScript.player_ref.is_floating;
+	else:
+		is_active = false;
 
 	
 	call_deferred("check_death");

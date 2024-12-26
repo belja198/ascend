@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dux6m0rbjrq6h"]
+[gd_scene load_steps=8 format=3 uid="uid://bkvyo0eq8jwtu"]
 
-[ext_resource type="Texture2D" uid="uid://bmj6lolt816ms" path="res://sprites/char.png" id="1_mujva"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_rixju"]
-[ext_resource type="FontFile" uid="uid://cu72bec757ksd" path="res://sprites/PublicPixel10.ttf" id="3_cgp41"]
+[ext_resource type="Script" path="res://scenes/player_fell.gd" id="1_cc1l4"]
+[ext_resource type="Texture2D" uid="uid://bmj6lolt816ms" path="res://sprites/char.png" id="2_duf7n"]
+[ext_resource type="FontFile" uid="uid://cu72bec757ksd" path="res://sprites/PublicPixel10.ttf" id="3_ygyfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibq4q"]
 size = Vector2(10, 14)
@@ -20,13 +20,13 @@ height = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kxuy"]
 size = Vector2(10, 15.6)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="PlayerFell" type="CharacterBody2D"]
 collision_layer = 3
-script = ExtResource("1_rixju")
+script = ExtResource("1_cc1l4")
 speed = 96.0
 jump_height = 31.4
 jump_time_to_peak = 0.8
-jump_time_to_fall = 0.8
+jump_time_to_fall = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
@@ -37,9 +37,8 @@ visible = false
 texture = SubResource("GradientTexture2D_3clfc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.620408, 0.547545, 1)
 position = Vector2(0, -8)
-texture = ExtResource("1_mujva")
+texture = ExtResource("2_duf7n")
 
 [node name="JumpAllowRaycast1" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
@@ -53,7 +52,7 @@ target_position = Vector2(0, -16)
 offset_left = -107.0
 offset_right = 117.0
 offset_bottom = 32.0
-theme_override_fonts/normal_font = ExtResource("3_cgp41")
+theme_override_fonts/normal_font = ExtResource("3_ygyfi")
 theme_override_font_sizes/normal_font_size = 8
 
 [node name="CollisionShapeJumping" type="CollisionShape2D" parent="."]

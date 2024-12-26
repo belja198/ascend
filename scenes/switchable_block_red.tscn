@@ -11,6 +11,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [node name="SwitchableBlockRed" type="StaticBody2D"]
+z_index = -1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_0mgeo")
