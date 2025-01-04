@@ -25,7 +25,7 @@ func change_level() -> void:
 	get_tree().change_scene_to_file(next_level_name);
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player || body is PlayerFell:
 		#print("player confirmed")
 		if next_level_name == "" || is_locked:
 			return;
