@@ -144,5 +144,17 @@ func _physics_process(delta: float) -> void:
 
 	position_label.text = "vel_y" + str(velocity.y) + "\ny:" + str(position.y); 
 
+func _is_colliding_with_red_block(raycast: RayCast2D) -> bool:
+	var collider: Object = raycast.get_collider();
+	return collider != null && collider is RedBlock;
+
 func _is_on_floor() -> bool:
-	return floor_raycast_1.is_colliding() || floor_raycast_2.is_colliding();
+	if floor_raycast_1.is_colliding() && !_is_colliding_with_red_block(floor_raycast_1):
+		return true;
+	if floor_raycast_2.is_colliding() && !_is_colliding_with_red_block(floor_raycast_2):
+		return true;
+	return false;
+
+
+#func _is_on_floor() -> bool:
+#	return floor_raycast_1.is_colliding() || floor_raycast_2.is_colliding();

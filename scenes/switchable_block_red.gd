@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name RedBlock;
 
 @onready var active_sprite: Sprite2D = $ActiveSprite;
 @onready var inactive_sprite: Sprite2D = $InactiveSprite;
