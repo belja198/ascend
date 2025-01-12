@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var speed: float = 100.0;
-
+@export var is_ascended: bool = true;
 var is_floating: bool = false;
 var old_is_floating: bool = is_floating;
 @onready var float_sprite: Sprite2D = $FloatSprite;
@@ -55,6 +55,8 @@ func _ready() -> void:
 	position.y = round(position.y) - 0.001;
 	collision_shape_jumping.disabled = true;
 
+	if is_ascended:
+		sprite.modulate = Color(1, 0.62, 0.549);
 	#floor_block_on_wall = true;
 
 	#Engine.time_scale = 0.1	;
@@ -71,22 +73,31 @@ func _physics_process(delta: float) -> void:
 	#	is_floating = false;
 	#	float_sprite.visible = false;
 
-	# Add the gravity.
-	if !_is_on_floor() || velocity.y != 0 :
-		#|| jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding()
-		if velocity.y >= 0:
-			velocity.y = 0;
-			
-			#collision_shape_jumping.disabled = true;
-			is_floating = true;
 
-
-		if !is_floating :
-			velocity.y += jump_gravity * delta;
+	if is_ascended:
+		# Add the gravity.
+		if !_is_on_floor() || velocity.y != 0 :
+			#|| jump_raycast_1.is_colliding() || jump_raycast_2.is_colliding()
+			if velocity.y >= 0:
+				velocity.y = 0;
+				
+				#collision_shape_jumping.disabled = true;
+				is_floating = true;
+			if !is_floating :
+				velocity.y += jump_gravity * delta;
+		else:
+			is_floating = false;
+			#velocity.y = 0;
 	else:
-		is_floating = false;
-		#velocity.y = 0;
-
+		if !_is_on_floor():
+			if (velocity.y <= 0):
+				velocity.y += jump_gravity * delta;
+			else:
+				velocity.y += fall_gravity * delta;
+		else:
+			is_floating = false;
+			#velocity.y = 0;
+			
 	if (is_floating || _is_on_floor()):
 		position.y = round(position.y) - 0.001;
 		collision_shape_jumping.disabled = true;
@@ -142,7 +153,7 @@ func _physics_process(delta: float) -> void:
 	#position.y = round(position.y) - 0.001;
 	#position.x = round(position.x);
 
-	position_label.text = "vel_y" + str(velocity.y) + "\ny:" + str(position.y); 
+	position_label.text = "vel_y" + str(velocity.y) + "\ny:" + str(position.y) + "\nx:" + str(position.x); 
 
 func _is_colliding_with_red_block(raycast: RayCast2D) -> bool:
 	var collider: Object = raycast.get_collider();

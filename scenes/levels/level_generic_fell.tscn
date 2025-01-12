@@ -2,14 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://dhhwuyxseum7p" path="res://scenes/tile_map_layer.tscn" id="1_vaji7"]
 [ext_resource type="PackedScene" uid="uid://ddee83t2xdcgn" path="res://scenes/door.tscn" id="2_f3ll2"]
-[ext_resource type="PackedScene" uid="uid://bkvyo0eq8jwtu" path="res://scenes/player_fell.tscn" id="3_ft5xf"]
+[ext_resource type="PackedScene" uid="uid://dux6m0rbjrq6h" path="res://scenes/player.tscn" id="4_0nqpy"]
 
 [node name="World" type="Node2D"]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("1_vaji7")]
 
-[node name="PlayerFell" parent="." instance=ExtResource("3_ft5xf")]
-position = Vector2(56, 144)
+[node name="Player" parent="." instance=ExtResource("4_0nqpy")]
+position = Vector2(64, 144)
+is_ascended = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
