@@ -6,8 +6,8 @@
 radius = 24.0
 
 [sub_resource type="Gradient" id="Gradient_sq2qp"]
-offsets = PackedFloat32Array(0, 0.0862471, 0.291375, 0.51049, 0.561772)
-colors = PackedColorArray(0.874063, 0, 0.135955, 0.654902, 0.894118, 0.109804, 0.223529, 0.796078, 0.909804, 0.360784, 0.419608, 0.764706, 0.999995, 0.162613, 0.207868, 0.715818, 1, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.0862471, 0.291375, 0.51049, 0.564103)
+colors = PackedColorArray(0.811765, 0, 0.121569, 1, 0.894118, 0.109804, 0.223529, 0.796078, 0.952941, 0, 0, 0.968627, 0.999995, 0.162613, 0.207868, 0.715818, 0.954458, 3.60981e-06, 1.34766e-06, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bd7xo"]
 gradient = SubResource("Gradient_sq2qp")
