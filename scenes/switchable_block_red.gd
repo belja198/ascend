@@ -42,9 +42,10 @@ func _process(delta: float) -> void:
 
 func check_death() -> void:
 	if is_player_present && is_active && !GlobalScript.player_ref.is_on_floor():
-		print("DEATH!!!!!!!!");
-		modulate = Color(0,0,0);
-		#GlobalScript.restart_level();
+		#print("DEATH!!!!!!!!");
+		#modulate = Color(0,0,0);
+		GlobalScript.restart_level();
+		GlobalScript.player_ref.die();
 
 func _on_area_2d_body_exited(body:Node2D) -> void:
 	if body is Player:

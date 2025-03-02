@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyhytqygufpi2"]
+
+[sub_resource type="Curve" id="Curve_jhout"]
+_data = [Vector2(0.00566893, 0.0444576), 0.0, 0.0, 0, 0, Vector2(0.150794, 0.668643), 0.0, 0.0, 0, 0, Vector2(0.450113, 0.352697), 0.0, 0.0, 0, 0, Vector2(0.665533, 0.761114), 0.0, 0.0, 0, 0, Vector2(0.989796, 0.0213397), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_te53l"]
+interpolation_mode = 2
+colors = PackedColorArray(0.564706, 0.894118, 0.298039, 1, 1, 0.458824, 1, 1)
+
+[node name="DeathParticles" type="CPUParticles2D"]
+amount = 32
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(8, 8)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_jhout")
+color_ramp = SubResource("Gradient_te53l")

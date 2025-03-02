@@ -166,6 +166,9 @@ func _is_on_floor() -> bool:
 		return true;
 	return false;
 
+func die() -> void :
+	pass;
 
+	
 #func _is_on_floor() -> bool:
 #	return floor_raycast_1.is_colliding() || floor_raycast_2.is_colliding();
