@@ -7,13 +7,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibq4q"]
 size = Vector2(10, 14)
 
-[sub_resource type="Gradient" id="Gradient_x2w5k"]
+[sub_resource type="Gradient" id="Gradient_2reem"]
 offsets = PackedFloat32Array(0, 0.3, 0.504348, 0.7, 1)
-colors = PackedColorArray(1, 0.486275, 0.454902, 0, 1, 0.203922, 0.231373, 1, 0.901909, 1.94208e-05, 0.138151, 1, 0.99984, 0.203592, 0.230447, 1, 1, 0.486275, 0.454902, 0)
+colors = PackedColorArray(0.890196, 0.890196, 0.890196, 0, 0.929412, 0.929412, 0.929412, 0.74902, 0.854634, 0.854634, 0.854634, 1, 0.929715, 0.929715, 0.929715, 0.74902, 0.889147, 0.889147, 0.889147, 0)
 metadata/_snap_enabled = true
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3clfc"]
-gradient = SubResource("Gradient_x2w5k")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t5jl6"]
+gradient = SubResource("Gradient_2reem")
 width = 32
 height = 1
 
@@ -33,8 +33,8 @@ position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_ibq4q")
 
 [node name="FloatSprite" type="Sprite2D" parent="."]
-visible = false
-texture = SubResource("GradientTexture2D_3clfc")
+modulate = Color(1, 0.113725, 0.188235, 1)
+texture = SubResource("GradientTexture2D_t5jl6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -49,7 +49,6 @@ position = Vector2(5, 0)
 target_position = Vector2(0, -16)
 
 [node name="PositionLabel" type="RichTextLabel" parent="."]
-visible = false
 offset_left = -107.0
 offset_right = 117.0
 offset_bottom = 32.0
