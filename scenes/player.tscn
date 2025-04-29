@@ -49,6 +49,7 @@ position = Vector2(5, 0)
 target_position = Vector2(0, -16)
 
 [node name="PositionLabel" type="RichTextLabel" parent="."]
+visible = false
 offset_left = -107.0
 offset_right = 117.0
 offset_bottom = 32.0
