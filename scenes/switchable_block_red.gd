@@ -27,7 +27,6 @@ func _process(delta: float) -> void:
 	else:
 		is_active = false;
 
-	
 	call_deferred("check_death");
 
 	#if is_player_present && is_active:
@@ -54,3 +53,5 @@ func _on_area_2d_body_exited(body:Node2D) -> void:
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body is Player:
 		is_player_present = true;
+
+	

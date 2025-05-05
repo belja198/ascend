@@ -33,6 +33,7 @@ position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_ibq4q")
 
 [node name="FloatSprite" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 0.113725, 0.188235, 1)
 texture = SubResource("GradientTexture2D_t5jl6")
 

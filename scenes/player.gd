@@ -167,7 +167,14 @@ func _is_on_floor() -> bool:
 	return false;
 
 func die() -> void :
-	pass;
+	set_physics_process(false);  #freze player
+	
+	#animate death somehow
+	
+	# DEFER VIA TIMER
+	GlobalScript.restart_level();
+	
+	
 
 	
 #func _is_on_floor() -> bool:
