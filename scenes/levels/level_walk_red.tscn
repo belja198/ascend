@@ -11,6 +11,7 @@ tile_map_data = PackedByteArray("AAABAAsAAQAAAAAAAAABAAoAAQAAAAAAAAAAAAYAAQAAAAA
 
 [node name="Player" parent="." instance=ExtResource("2_s6arm")]
 position = Vector2(40, 128)
+is_ascended = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)

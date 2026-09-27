@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://bawkvp6jveykm"]
+[gd_scene load_steps=10 format=4 uid="uid://bawkvp6jveykm"]
 
 [ext_resource type="Texture2D" uid="uid://dal6p1dww0od7" path="res://sprites/tileset.png" id="1_t7nsw"]
 [ext_resource type="PackedScene" uid="uid://ce0mxy14nf7c4" path="res://scenes/switchable_block_red.tscn" id="2_nyj85"]
 [ext_resource type="PackedScene" uid="uid://dkxtlh2lt7alp" path="res://scenes/switchable_block_yellow.tscn" id="3_rswb2"]
 [ext_resource type="PackedScene" uid="uid://dux6m0rbjrq6h" path="res://scenes/player.tscn" id="3_smoc2"]
 [ext_resource type="PackedScene" uid="uid://ddee83t2xdcgn" path="res://scenes/door.tscn" id="4_efa85"]
+[ext_resource type="FontFile" uid="uid://cu72bec757ksd" path="res://sprites/PublicPixel10.ttf" id="6_rira3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sv6f2"]
 texture = ExtResource("1_t7nsw")
@@ -52,3 +53,13 @@ offset_right = 320.0
 offset_bottom = 192.0
 color = Color(0.501961, 0.729412, 0.494118, 1)
 metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 62.0
+offset_top = 59.0
+offset_right = 270.0
+offset_bottom = 106.0
+theme_override_colors/default_color = Color(0.501961, 0.729412, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("6_rira3")
+theme_override_font_sizes/normal_font_size = 16
+text = "R->restart"

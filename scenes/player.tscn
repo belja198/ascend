@@ -24,6 +24,7 @@ size = Vector2(10, 15.6)
 collision_layer = 3
 script = ExtResource("1_rixju")
 speed = 96.0
+is_ascended = null
 jump_height = 31.4
 jump_time_to_peak = 0.8
 jump_time_to_fall = 0.6
@@ -84,3 +85,5 @@ target_position = Vector2(1, 0)
 [node name="RightHighRay" type="RayCast2D" parent="."]
 position = Vector2(5, -15)
 target_position = Vector2(1, 0)
+
+[node name="DeathTimer" type="Timer" parent="."]

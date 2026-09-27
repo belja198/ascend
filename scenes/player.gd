@@ -8,6 +8,8 @@ var old_is_floating: bool = is_floating;
 @onready var float_sprite: Sprite2D = $FloatSprite;
 @onready var sprite: Sprite2D = $Sprite2D;
 
+@onready var death_timer: Timer = $DeathTimer;
+
 @onready var jump_raycast_1: RayCast2D = $JumpAllowRaycast1;
 @onready var jump_raycast_2: RayCast2D = $JumpAllowRaycast2;
 @onready var collision_shape_jumping: CollisionShape2D = $CollisionShapeJumping;
@@ -166,13 +168,27 @@ func _is_on_floor() -> bool:
 		return true;
 	return false;
 
-func die() -> void :
-	set_physics_process(false);  #freze player
-	
-	#animate death somehow
-	
-	# DEFER VIA TIMER
-	GlobalScript.restart_level();
+var is_dead: bool = false
+
+func die() -> void:
+	if is_dead:
+		return
+
+	is_dead = true
+	set_physics_process(false)
+
+	for i in range(6):
+		sprite.modulate.a = 0.2 if i % 2 == 0 else 1.0
+
+		death_timer.start(0.07)
+		await death_timer.timeout
+
+	sprite.modulate.a = 1.0
+
+	death_timer.start(0.15)
+	await death_timer.timeout
+
+	GlobalScript.restart_level()
 	
 	
 

@@ -36,6 +36,7 @@ tile_set = SubResource("TileSet_11ag2")
 
 [node name="Player" parent="." instance=ExtResource("3_g3kj3")]
 position = Vector2(80, 160)
+is_ascended = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
